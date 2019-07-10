@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BaiTap2</title>
+</head>
+<body>
+<script>
+    let Rat = function (ratName, ratWeight, ratSpeed, ratStatus) {
+        this.ratName = ratName;
+        this.ratWeight = ratWeight;
+        this.ratSpeed = ratSpeed;
+        this.ratStatus = ratStatus;
+        this.getRatName = function () {
+            return this.ratName;
+        };
+        this.setRatName = function (ratName) {
+            this.ratName = ratName;
+        };
+        this.getRatWeight = function () {
+            return this.ratWeight;
+        };
+        this.setRatWeight = function (ratWeight) {
+            this.ratWeight = ratWeight;
+        };
+        this.getRatSpeed = function () {
+            return this.ratSpeed;
+        };
+        this.setRatSpeeds = function (ratSpeed) {
+            this.ratSpeed = ratSpeed;
+        };
+
+        this.setAlive = function () {
+            this.ratStatus = true;
+        };
+        this.setDeath = function () {
+            this.ratStatus = false
+        };
+        this.ratBehavior = function () {
+            alert(this.ratName+ " say chut chit ");
+
+        }
+
+    };
+    let Cat = function (catName, catWeight, catMaxSpeed,) {
+        this.catName = catName;
+        this.catWeight = catWeight;
+        this.catMaxSpeed = catMaxSpeed;
+        this.setCatName = function (catName) {
+            this.catName = catName;
+        };
+        this.getCatName = function () {
+            return this.catName;
+
+        };
+        this.setCatWeight = function (catWeight) {
+            this.catWeight = catWeight;
+        };
+        this.getCatWeight = function () {
+            return this.catWeight;
+        };
+        this.setCatMaxSpeed = function (catMaxSpeed) {
+            this.catMaxSpeed = catMaxSpeed;
+        };
+        this.getCatMaxSpeed = function () {
+            return this.catMaxSpeed;
+
+        };
+        this.catBehavior = function () {
+            alert(this.catName + " say Meo Meo " );
+        };
+        this.catchRat = function (rat) {
+            if (rat.ratSpeed < this.catMaxSpeed) {
+                alert(this.catName + " catched the " + rat.getRatName());
+                this.catBehavior();
+
+            } else {
+                alert(this.catName + " is too slow, it can't catch ");
+            }
+        };
+        this.eatRat = function (rat) {
+            if (rat.ratStatus) {
+                alert(rat.getRatName()+ " is alive.")
+                rat.ratBehavior();
+                alert(this.catName + " eats " + rat.getRatName());
+                this.catWeight += rat.ratWeight;
+                alert(this.catName+ "'s weight turn to "+this.catWeight)
+            }else{alert(rat.getRatName()+ " is death, "+ this.catName+ " doesn't eat the rat.")}
+        }
+    };
+
+    let rat1 = new Rat("Chuot bach", 5, 10, true);
+    let cat1 = new Cat("Meo mun", 20, 25);
+    cat1.catchRat(rat1);
+    cat1.eatRat(rat1);
+</script>
+</body>
+</html>

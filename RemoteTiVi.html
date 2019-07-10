@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote</title>
+</head>
+<body>
+<script>
+
+
+    let TiVi = function(channel,volume,status,){
+        this.channel=channel;
+        this.volume=volume;
+        this.status=status;
+        this.setChannel=function (channel) {
+            this.channel=channel;
+        };
+        this.getChannel=function () {
+            return this.channel;
+        };
+        this.setVolume=function (volume) {
+            this.volume=volume;
+        };
+        this.getVolume=function () {
+            return this.volume;
+        };
+        this.getStatus=function () {
+            if (this.status){
+                return "TV is on";
+            }else {return "TV is off"}
+        }
+    };
+    let Remote=function (code) {
+        this.code=code;
+        this.setCode=function (code){
+            this.code=code;
+        };
+        this.getCode=function () {
+            return this.code;
+        };
+        this.changeChannel=function (tivi,channel) {
+            tivi.channel=channel;
+        };
+        this.increaseVolume=function (tivi,volume) {
+            tivi.volume+=volume;
+        };
+        this.decreaseVolume=function (tivi,volume) {
+            tivi.volume-=volume;
+        };
+        this.turnOnTV=function (tivi) {
+           tivi.status=true;
+        };
+        this.turnOffTV=function (tivi) {
+            tivi.status=false;
+        }
+    };
+    let tivi1= new TiVi(7,50,true);
+    alert("current channel: "+tivi1.getChannel()+ "; current volume: "+ tivi1.getVolume()+ " current status: "+ tivi1.getStatus());
+    let remote = new Remote(tivi1);
+    remote.changeChannel(tivi1,3);
+    remote.increaseVolume(tivi1,2);
+    alert("changed channel: "+ tivi1.getChannel()+ "; changed Volume: "+ tivi1.getVolume());
+    remote.turnOffTV(tivi1);
+    alert(tivi1.getStatus());
+</script>
+</body>
+</html>
